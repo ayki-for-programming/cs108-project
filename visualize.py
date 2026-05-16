@@ -13,9 +13,7 @@ width, height = 800, 400
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("AI Audio + Real-time Sound Visualization")
 
-# -----------------------------
 # AI TEXT-TO-SPEECH FUNCTION
-# -----------------------------
 def speak(prompt):
     tts = gTTS(prompt)
     tts.save("ai_output.mp3")
@@ -25,9 +23,7 @@ def speak(prompt):
 # Play AI audio at start
 speak("Hello. This is an AI generated sound test for your visualizer.")
 
-# -----------------------------
 # SET UP AUDIO INPUT (STEREO MIX)
-# -----------------------------
 p = pyaudio.PyAudio()
 
 for i in range(p.get_device_count()):
@@ -50,9 +46,7 @@ stream = p.open(format=FORMAT,
                 input_device_index=mic_index,
                 frames_per_buffer=CHUNK)
 
-# -----------------------------
 # MAIN LOOP
-# -----------------------------
 running = True
 while running:
     data = stream.read(CHUNK)
@@ -76,9 +70,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-# -----------------------------
 # CLEANUP
-# -----------------------------
 stream.stop_stream()
 stream.close()
 p.terminate()
